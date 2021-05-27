@@ -1,4 +1,4 @@
-### CovidVac
+### <h2>CovidVac</h2>
 
 ## Sobre
 CovidVac é uma aplicação escrita no framework Laravel PHP versão 8.5 e que utiliza um frontend do framework Quasar, escrito em Vue. Basicamente sua função e realizar um processo básico de vacinação de pacientes.
@@ -9,7 +9,7 @@ Para instalar a aplicação é nescessário seguir o processo básico do Laravel
 php artisan migrate;
 php artisan db:seed --class=DatabaseSeeder;
 ```
-Para compilar os assets do Quasar é nescessário instalar o quasar-cli. Você pode encontrar o tutorial <a href="https://quasar.dev/quasar-cli/installation">aqui</a>.tendo sido instalado basta entrar na pasta do frontend e executar o seguinte comando no terminal:
+Para compilar os assets do Quasar é nescessário instalar o quasar-cli. Você pode encontrar o tutorial <a href="https://quasar.dev/quasar-cli/installation">aqui</a>. Tendo sido instalado basta entrar na pasta do frontend e executar o seguinte comando no terminal:
 
 ```
 quasar build
