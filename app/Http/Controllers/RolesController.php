@@ -47,7 +47,7 @@ class RolesController extends Controller
     $model = new $this->model;
     $this->checkPermission('delete');
     $model->whereIn('id',$request->items)->delete();
-    DB::table('permission_role')->whereIn('role',$request->items)->delete();
+    DB::table('permission_role')->whereIn('role_id',$request->items)->delete();
     return response('',200);
   }
 

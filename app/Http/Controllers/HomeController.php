@@ -26,4 +26,9 @@ class HomeController extends Controller
     Auth::logout();
     return redirect('/');
   }
+
+  public function menus(){
+    $user = Auth::user();
+    return $user->role->Permissions()->select('name')->where('name','like','%_read%')->get()->pluck('name');
+  }
 }

@@ -114,7 +114,11 @@ export default {
       _this.$axios.get(`${_this.$route.fullPath}?page=${page}&search=${_this.search}`)
       .then(({data})=>_this.items = data)
       .catch((err)=>{
-        _this.$swal.fire('Erro!','Ocorreu um erro ao tentar listar registros!','error');
+        if(err.response.status==403){
+          _this.$swal.fire('Erro!','Você não tem permissão para esta operação!','error');
+        }else{
+          _this.$swal.fire('Erro!','Ocorreu um erro ao tentar listar registros!','error');
+        }
       }).finally(()=>{
          _this.loading_data = false;
       });
@@ -128,7 +132,11 @@ export default {
           _this.form = data;
         })
         .catch((err)=>{
-          _this.$swal.fire('Erro!','Ocorreu um erro ao tentar exibir dados!','error');
+          if(err.response.status==403){
+            _this.$swal.fire('Erro!','Você não tem permissão para esta operação!','error');
+          }else{
+            _this.$swal.fire('Erro!','Ocorreu um erro ao tentar exibir dados!','error');
+          }
         });
       }
     },
@@ -150,6 +158,8 @@ export default {
           if(err.response.status==422 && err.response.hasOwnProperty('data')){
             _this.$swal.fire('Erro!','Ocorreram erros de validação','error');
             _this.$emit('error',err.response.data.errors);
+          }else if(err.response.status==403){
+            _this.$swal.fire('Erro!','Você não tem permissão para esta operação!','error');
           }else{
             _this.$swal.fire('Erro!','Ocorreu um erro ao tentar salvar os dados','error');
           }
@@ -179,7 +189,13 @@ export default {
             _this.selected = [];
             _this.getItems(_this.items.current_page);
           })
-          .catch((err)=>_this.$swal.fire('Erro!','Ocorreu um erro ao tentar excluir os items!','error'));
+          .catch((err)=>{
+            if(err.response.status==403){
+              _this.$swal.fire('Erro!','Você não tem permissão para esta operação!','error');
+            }else{
+              _this.$swal.fire('Erro!','Ocorreu um erro ao tentar excluir os items!','error');
+            }
+          });
         }
       });
     },

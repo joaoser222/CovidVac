@@ -79,15 +79,28 @@ export default {
     return {
       drawer: null,
       icon_mode: false,
+      permissions: []
     }
   },
   computed:{
     menus: function(){
-      return this.$router.options.routes.find((item)=>item.name=='main').children.filter((item)=>item.path);
+      let _this = this;
+      return this.$router.options.routes.find((item)=>item.name=='main').children.filter((item)=>{
+        return (item.path && _this.permissions.indexOf(item.name)>-1) || item.name=='logout'
+      });
+    }
+  },
+  methods:{
+    getMenus(){
+      let _this = this;
+      _this.$axios.get('/admin/menus')
+      .then(({data})=>_this.permissions = data)
+      .catch((err)=>_this.$swal.fire('Erro','Ocorreu um erro ao listar menus!','error'));
     }
   },
   mounted(){
     this.drawer = !this.$q.screen.lt.md;
+    this.getMenus();
   }
 }
 </script>

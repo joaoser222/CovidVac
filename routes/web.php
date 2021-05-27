@@ -20,6 +20,7 @@ Route::prefix('api')->group(function () {
   Route::get('/logout','HomeController@logout');
 
   Route::group(['prefix'=>'admin','middleware'=>'auth'],function () {
+    Route::get('/menus','HomeController@menus');
     Route::prefix('users')->group(function () {
       Route::post('/store','UsersController@store');
       Route::post('/update/{id}','UsersController@update');

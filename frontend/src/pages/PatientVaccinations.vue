@@ -214,14 +214,14 @@ export default {
       let _this = this;
       _this.$axios.get(`/admin/${entity}?page=1&search=${encodeURIComponent(search)}`)
       .then(({data})=>_this[entity].data = data.data)
-      .catch((err)=>_this.$swal.fire('Erro!','Ocorreu um erro ao pesquisar items'));
+      .catch((err)=>_this.$swal.fire('Erro!','Ocorreu um erro ao pesquisar items','error'));
     },
     getSelectedItem(id,entity){
       let _this = this;
       if(id){
         _this.$axios.get(`/admin/${entity}/${id}`)
         .then(({data})=>_this[entity].data.push(data))
-        .catch((err)=>_this.$swal.fire('Erro!','Ocorreu um erro ao pesquisar items'));
+        .catch((err)=>_this.$swal.fire('Erro!','Ocorreu um erro ao pesquisar items','error'));
       }
     },
     searchPatients(val,update,abort){
