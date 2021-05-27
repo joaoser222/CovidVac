@@ -37,11 +37,9 @@ class RolesController extends Controller
   {
     // Verifica se o usuário pode realizar a ação.
     $this->checkPermission('update');
-    return $this->save($request,$id);
-    $record = $this->save($request);
+    $record = $this->save($request,$id);
     $permissions = $request->permissions;
     $record->Permissions()->sync($permissions);
-    
   }
 
   public function destroy(Request $request)

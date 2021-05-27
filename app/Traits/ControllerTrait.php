@@ -69,7 +69,7 @@ trait ControllerTrait
    * 
   **/
   public function save(Request $request,$id = null){
-    return DB::transaction(function () use($request,$id){
+    return DB::transaction(function()use($request,$id){
       //Instaciando um modelo.
       $model = new $this->model;
       $fillable_fields = $model->getFillable();
@@ -77,9 +77,8 @@ trait ControllerTrait
         return !is_null($item);
       });
       $record = [];
-
       // Persiste os dados no banco
-      if(isset($id)){
+      if(!empty($id)){
         $record = $model->findOrFail($id);
         //Validação dos dados
         $request->validate($record->getRules());
