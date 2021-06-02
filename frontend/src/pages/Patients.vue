@@ -64,7 +64,7 @@
           <p class="text-negative">{{$getError(errors,'street')}}</p>
         </div>
         <div class="col-12 col-sm-6 q-pa-sm">
-          <div class="q-pb-sm">Complemento<span class="text-negative">*</span>:</div>
+          <div class="q-pb-sm">Complemento:</div>
           <q-input dense outlined v-model="form.complement" placeholder="Digite o Complemento" />
           <p class="text-negative">{{$getError(errors,'complement')}}</p>
         </div>

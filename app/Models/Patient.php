@@ -35,7 +35,6 @@ class Patient extends Model
       'rg'=>'required',
       'cep'=>'required',
       'number'=>'required',
-      'complement'=>'required',
       'street'=>'required',
       'district'=>'required',
       'city'=>'required',
