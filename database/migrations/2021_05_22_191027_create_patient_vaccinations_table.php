@@ -15,12 +15,16 @@ class CreatePatientVaccinationsTable extends Migration
     {
         Schema::create('patient_vaccinations', function (Blueprint $table) {
             $table->id();
-            $table->integer('patient_id');
-            $table->integer('vaccine_id');
+            $table->unsignedBigInteger('patient_id')->unsigned()->index();
+            $table->unsignedBigInteger('vaccine_id')->unsigned()->index();
             $table->date('validity');
             $table->string('batch');
-            $table->integer('vendor_id');
+            $table->unsignedBigInteger('vendor_id')->unsigned()->index();
             $table->timestamps();
+
+            $table->foreign('patient_id')->references('id')->on('patients');
+            $table->foreign('vaccine_id')->references('id')->on('vaccines');
+            $table->foreign('vendor_id')->references('id')->on('vendors');
         });
     }
 

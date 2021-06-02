@@ -26,9 +26,11 @@ class CreatePatientsTable extends Migration
           $table->string('street');
           $table->string('district');
           $table->string('city');
-          $table->integer('state_id');
+          $table->unsignedBigInteger('state_id')->unsigned()->index();
           $table->date('birth_date');
           $table->timestamps();
+
+          $table->foreign('state_id')->references('id')->on('states');
         });
     }
 

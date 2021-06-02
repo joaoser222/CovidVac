@@ -17,7 +17,7 @@ class StatesTableSeeder extends Seeder
     {
       //Retorna a lista de estados do ibge
       $data = json_decode(Http::get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')->body());
-      State::truncate();
+      State::query()->delete();
       foreach($data as $item){
         State::create([
           'name'=>$item->nome,

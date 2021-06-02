@@ -36,7 +36,7 @@ class PermissionsTableSeeder extends Seeder
       ];
 
       // Limpa a tabela de permissões antes de inserir;
-      Permission::truncate();
+      Permission::query()->delete();
 
       //Insere permissoes de acordo com controllers que possuem os atributos module e label,
       //referente a permissões.
