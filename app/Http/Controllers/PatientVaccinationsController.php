@@ -27,17 +27,16 @@ class PatientVaccinationsController extends Controller
 
     if(!empty($data->toArray())){
       $last = $data->last();
-      $next_date = Carbon::createFromFormat('d/m/Y H:i:s',$last->created_at)->addDays($vaccine->dose_days_range);
-      if($next_date>Carbon::now()){
-        return response([
-          'error'=>'O intervalo de dias entre doses deve ser no mínimo de '.$vaccine->dose_days_range.' dia(s)!'
-        ],422);
-      }
-      
+      [$date,$time] = explode(' ',$last->created_at);
+      $next_date = Carbon::createFromFormat('d/m/Y',$date)->addDays($vaccine->dose_days_range);
       if(count($data)>=$vaccine->dose_per_use){
         return response([
           'error'=>'O paciente já concluiu todas as doses desta vacina!']
         ,422);
+      }else if($next_date>Carbon::now()){
+        return response([
+          'error'=>'O intervalo de dias entre doses deve ser no mínimo de '.$vaccine->dose_days_range.' dia(s)!'
+        ],422);
       }
 
       return response()->json(['vendor_id'=>$last->vendor_id]);
