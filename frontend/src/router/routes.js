@@ -25,7 +25,7 @@ const routes = [
       },
       {
         path: 'patients/:id?',
-        name: 'patients_read',
+        name: 'patient_read',
         meta: {
           title: 'Pacientes',
           icon: 'las la-users'
