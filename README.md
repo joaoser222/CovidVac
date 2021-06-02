@@ -10,9 +10,13 @@ Para instalar a aplicação é nescessário seguir o processo básico do Laravel
 php artisan migrate;
 php artisan db:seed --class=DatabaseSeeder;
 ```
-Para compilar os assets do Quasar é nescessário instalar o quasar-cli. Você pode encontrar o tutorial <a href="https://quasar.dev/quasar-cli/installation">aqui</a>. Tendo sido instalado basta entrar na pasta do frontend e executar o seguinte comando no terminal:
+Para compilar os assets do Quasar é nescessário instalar o quasar-cli e o npm. Você pode encontrar o tutorial <a href="https://quasar.dev/quasar-cli/installation">aqui</a> para o quasar e para o npm <a href="https://docs.npmjs.com/">aqui</a>. Tendo sido instalado basta entrar na pasta do frontend e executar os seguintes comandos no terminal:
 
+```
+npm install
+```
+e
 ```
 quasar build
 ```
-Isso irá gerar todos os assets na pasta public, devidamente configurados.
+O primeiro irá instalar todos os módulos do javascript e o segundo irá gerar todos os assets na pasta public, devidamente configurados.
